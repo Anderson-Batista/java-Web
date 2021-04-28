@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Agenda de contatos</title>
+<link rel="icon" href="imagens/phone.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Agenda de Contatos</h1>
+	<a href="" class="Botao">Novo Contato</a>
+</body>
+</html>
