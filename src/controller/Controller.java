@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DAO;
 
 /**
  * Servlet implementation class Controller
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/Controller", "/main"})
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	DAO dao = new DAO();
        
     /**
      * @see HttpServlet#HttpServlet()
