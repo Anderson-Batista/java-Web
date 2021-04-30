@@ -1,12 +1,12 @@
 /**
- * Confirmação de exclusão de um contato
+ * Validação de formulário
  * @author Anderson Batista
  */
-
-function confirmar(idcon){
-	let resposta = confirm("Cenfirma exclusão deste contato ?");
-	if(resposta === true){
-		//alert(idcon);
-		Window.location.href = "delete?idcon=" + idcon;
-	}
-}
+ 
+ function confirmar(idcon){
+ 	let resposta = confirm("Confirma a exclusão deste contato ?");
+ 	if(resposta === true){
+ 	//alert(idcon);
+ 	window.location.href = "delete?idcon=" + idcon;
+ 	}
+ }
