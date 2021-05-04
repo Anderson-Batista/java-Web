@@ -1,5 +1,5 @@
 /**
- * Validação de formulário
+ * Validação de formulario
  * @author Anderson Batista
  */
 

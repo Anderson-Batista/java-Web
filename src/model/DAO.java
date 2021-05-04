@@ -6,15 +6,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DAO.
+ */
 public class DAO {
-	/** modulo de conexão **/
-	// Parâmetros de conexão
+	
+	/**  modulo de conexão *. */
 	private String driver = "com.mysql.cj.jdbc.Driver";
+	
+	/** The url. */
 	private String url = "jdbc:mysql://127.0.0.2:3306/dbagenda?useTimezone=true&serverTimezone=UTC";
+	
+	/** The user. */
 	private String user = "root";
+	
+	/** The password. */
 	private String password = "";
 
-	// Método de cenexão
+	/**
+	 * Conectar.
+	 *
+	 * @return the connection
+	 */
 	private Connection conectar() {
 		Connection con = null;
 		try {
@@ -27,25 +41,24 @@ public class DAO {
 		}
 	}
 
-	/** CRUD CREATE **/
+	/**
+	 *  CRUD CREATE *.
+	 *
+	 * @param contato the contato
+	 */
 	public void inserirContato(JavaBeans contato) {
 		String create = "insert into contatos (nome,phone,email) values (?,?,?)";
 		try {
-			// abrir a conexão
 			Connection con = conectar();
 
-			// Prepara a query para a execução no banco de dados
 			PreparedStatement pst = con.prepareStatement(create);
 
-			// Substituir os parâmetros (?) pelo conteúdo das variáveis Javabeans
 			pst.setString(1, contato.getNome());
 			pst.setString(2, contato.getFone());
 			pst.setString(3, contato.getEmail());
 
-			// Executar a query
 			pst.executeUpdate();
 
-			// Encerrar a conexão com o banco
 			con.close();
 
 		} catch (Exception e) {
@@ -53,9 +66,12 @@ public class DAO {
 		}
 	}
 
-	/** CRUD READ **/
+	/**
+	 *  CRUD READ *.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<JavaBeans> listarContatos() {
-		// Craindo um objeto para acessar a classe JavaBeans
 		ArrayList<JavaBeans> contatos = new ArrayList<>();
 
 		String read = "select * from contatos order by nome";
@@ -64,15 +80,12 @@ public class DAO {
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
 
-			// o laço abaixo será executado enquanto houver contatos
 			while (rs.next()) {
-				// variáveis de apoio que recebem os dados do banco
 				String idcon = rs.getString(1);
 				String nome = rs.getString(2);
 				String fone = rs.getString(3);
 				String email = rs.getString(4);
 
-				// populando o ArrayList
 				contatos.add(new JavaBeans(idcon, nome, fone, email));
 			}
 			con.close();
@@ -83,8 +96,11 @@ public class DAO {
 		}
 	}
 	
-	/** CRUD UPDATE**/
-	//selecionar o contato
+	/**
+	 *  CRUD UPDATE*.
+	 *
+	 * @param contato the contato
+	 */
 	public void selecionarContato(JavaBeans contato) {
 		String read2 = "select * from contatos where idcon = ?";
 		try {
@@ -93,7 +109,6 @@ public class DAO {
 			pst.setString(1, contato.getIdcon());
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
-				//setar as variáveis javaBeans
 				contato.setIdcon(rs.getString(1));
 				contato.setNome(rs.getString(2));
 				contato.setFone(rs.getString(3));
@@ -104,12 +119,17 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
-	// editar o contato
+	
+	/**
+	 * Alterar contato.
+	 *
+	 * @param contato the contato
+	 */
 	public void alterarContato(JavaBeans contato) {
-		String create = "update contatos set nome=?,phone=?,email=? where idcon=?";
+		String update = "update contatos set nome=?,phone=?,email=? where idcon=?";
 		try {
 			Connection con = conectar();
-			PreparedStatement pst = con.prepareStatement(create);
+			PreparedStatement pst = con.prepareStatement(update);
 			pst.setString(1, contato.getNome());
 			pst.setString(2, contato.getFone());
 			pst.setString(3, contato.getEmail());
@@ -122,7 +142,11 @@ public class DAO {
 		}
 	}
 	
-	/** CRUD DELETE **/
+	/**
+	 *  CRUD DELETE *.
+	 *
+	 * @param contato the contato
+	 */
 	public void deletarContato(JavaBeans contato) {
 		String delete = "delete from contatos where idcon=?";
 		try {
@@ -135,16 +159,4 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
-
-	// teste de conexão
-//	public void testeConexao() {
-//		try {
-//			Connection con = conectar();
-//			System.out.println(con);
-//			con.close();
-//		} catch (Exception e) {
-//			System.out.println(e);
-//		}
-//	}
-
 }
