@@ -13,6 +13,6 @@ tendo como objetivo criar um agenda de contatos.
 - HTML
 - CSS
 - JavaScript
-- Tomcat 9
+- Tomcat
 - JSP
 - Servlets
