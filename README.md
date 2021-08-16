@@ -9,7 +9,7 @@ tendo como objetivo criar uma agenda de contatos.
 ![tela2](https://github.com/Anderson-Batista/java-Web/blob/master/assets/img2.PNG)
 
 # Tecnologias utilizadas
-- Java
+- Java 11
 - HTML
 - CSS
 - JavaScript
